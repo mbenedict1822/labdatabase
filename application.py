@@ -10,7 +10,8 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
-db = SQL("sqlite:///lehtinen.db")
+#db = SQL("sqlite:///lehtinen.db")
+db = SQL("postgres://bbktmcmfqqnibh:69e9add54ca6afe4e8343d3c3f5b1ea223c1e1277c7a885b40fc442d88ac6b49@ec2-54-221-195-148.compute-1.amazonaws.com:5432/d94b7uoc9du86ts")
 
 list = ["firstname", "lastname", "email", "filename", "filepath", "filetype", "date", "mouse", "bath", "injection", "length", "time", "framerate", "frames", "response", "notes"]
 list2 = ["firstname1", "lastname1", "email1", "filename1", "filepath1", "filetype1", "date1", "mouse1", "bath1", "injection1", "length1", "time1", "framerate1", "frames1", "response1", "notes1"]
