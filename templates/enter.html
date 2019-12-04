@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <!--Makes website mobile friendly-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <!--Bootstrap compatibility-->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title class = title>Video Data Form</title>
+    </head>
+    <body style="background-color:LemonChiffon;">
+        <h1 class=" header text-info" >Video Data Form</h1>
+        <form action="/enter" method="post">
+            <div class="form-group col-md-6">
+                <label for="firstname">First Name</label>
+                <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First name">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="lastname">Last Name</label>
+                <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last name">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="user_email">Email address</label>
+                <input type="text" class="form-control" id="user_email" name="email" placeholder="Enter email">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputFilename">File Name</label>
+                <input type="text" class="form-control" id="inputFilename" name="filename">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputFilepath">File Path</label>
+                <input type="text" class="form-control" id="inputFilename" name="filepath" placeholder="If not known, leave blank.">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="inputType">Type</label>
+                <select id="inputType" class="form-control" name="filetype">
+                    <option selected>Choose...</option>
+                    <option>OIR</option>
+                    <option>TIFF</option>
+                    <option>OTHER</option>
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="ifother">If OTHER, please specify...</label>
+                <input type="text" class="form-control" id="ifother" name="ifother">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="date">Date</label>
+                <input type="text" class="form-control" id="date" name="date" placeholder="DD/MM/YYYY">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="date">Mouse</label>
+                <input type="text" class="form-control" id="mouse" name="mouse">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="bath">Bath Treatment</label>
+                <input type="text" class="form-control" id="bath" name="bath" placeholder="If none leave blank.">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="injection">Injection Treatment</label>
+                <input type="text" class="form-control" id="injection" name="injection" placeholder="If none leave blank.">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="length">Video Length</label>
+                <input type="text" class="form-control" id="length" name="length" placeholder="hh:mm:ss.ff...">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="time">Injection Time</label>
+                <input type="text" class="form-control" id="time" name="time" placeholder="hh:mm:ss.ff...">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="framerate">Framerate (frames per second)</label>
+                <input type="text" class="form-control" id="framerate" name="framerate" placeholder="If not known, leave blank.">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="frames">Total frames</label>
+                <input type="text" class="form-control" id="frames" name="frames" placeholder="If not known, leave blank.">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="response">Describe Response</label>
+                <input type="text" class="form-control" id="response" name="response">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="notes">Notes</label>
+                <input type="text" class="form-control" id="notes" name="notes">
+            </div>
+            <button type="submit" class="btn btn-info" style="margin: 20px">Submit</button>
+        </form>
+    </body>
+</html>

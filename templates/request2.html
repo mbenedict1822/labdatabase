@@ -1,0 +1,121 @@
+<html lang="en">
+    <!--Makes website mobile friendly-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <!--Bootstrap compatibility-->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title class = title>Video Data Request</title>
+    </head>
+    <body style="background-color:LemonChiffon;">
+        <h1 class="header text-info" >Video Data Form</h1>
+        <form action="/request2" method="post">
+            {% for i in query %}
+                <div class="form-group col-md-10">
+                    <label for="query">{{ query[i] }}</label>
+                <input type="text" class="form-control" id="query" placeholder= "Input Value" name={{ i }}>
+                </div>
+            {% endfor %}
+            <div class="form-group col-md-8">
+                <label>Select Category(s) to Return:</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="First Name" name="firstname1">
+                    <label class="form-check-label">
+                        First Name
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Last Name" name="lastname1">
+                    <label class="form-check-label">
+                        Last Name
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Email" name="email1">
+                    <label class="form-check-label">
+                        Email
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="File Name" name="filename1">
+                    <label class="form-check-label">
+                        File Name
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="File Name" name="filepath1">
+                    <label class="form-check-label">
+                        File Path
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="File Type" name="filetype1">
+                    <label class="form-check-label">
+                        File Type
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Date" name="date1">
+                    <label class="form-check-label">
+                        Date
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Mouse" name="mouse1">
+                    <label class="form-check-label">
+                        Mouse
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Bath" name="bath1">
+                    <label class="form-check-label">
+                        Bath
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Injection" name="injection1">
+                    <label class="form-check-label">
+                        Injection
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Length" name="length1">
+                    <label class="form-check-label">
+                        Length
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Time" name="time1">
+                    <label class="form-check-label">
+                        Time
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Framerate" name="framerate1">
+                    <label class="form-check-label">
+                        Framerate
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Frames" name="frames1">
+                    <label class="form-check-label">
+                        Frames
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Response" name="response1">
+                    <label class="form-check-label">
+                        Response
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Notes" name="notes1">
+                    <label class="form-check-label">
+                        Notes
+                    </label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-info" style="margin: 20px">Submit</button>
+        </form>
+    </body>
+</html>
