@@ -3,6 +3,8 @@ from flask_session import Session
 from tempfile import mkdtemp
 from cs50 import SQL
 
+app = Flask(__name__)
+
 ### Weird internet port code
 
 import os
@@ -12,8 +14,6 @@ port = int(os.environ.get("PORT", 5000))
 app.run(debug=True, host='0.0.0.0', port=port)
 
 ###
-
-app = Flask(__name__)
 
 app.config["SESSION_FILE_DIR"] = mkdtemp()
 app.config["SESSION_PERMANENT"] = False
