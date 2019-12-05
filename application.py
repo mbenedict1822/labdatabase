@@ -2,6 +2,7 @@ from flask import Flask, flash, jsonify, redirect, render_template, request, ses
 from flask_session import Session
 from tempfile import mkdtemp
 from cs50 import SQL
+import csv
 
 app = Flask(__name__)
 
@@ -20,11 +21,12 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
-#db = SQL("sqlite:///lehtinen.db")
-db = SQL("postgres://bbktmcmfqqnibh:69e9add54ca6afe4e8343d3c3f5b1ea223c1e1277c7a885b40fc442d88ac6b49@ec2-54-221-195-148.compute-1.amazonaws.com:5432/d94b7uoc9du86ts")
+db = SQL("sqlite:///lehtinen.db")
+#db = SQL("postgres://bbktmcmfqqnibh:69e9add54ca6afe4e8343d3c3f5b1ea223c1e1277c7a885b40fc442d88ac6b49@ec2-54-221-195-148.compute-1.amazonaws.com:5432/d94b7uoc9du86ts")
 
 list = ["firstname", "lastname", "email", "filename", "filepath", "filetype", "date", "mouse", "bath", "injection", "length", "time", "framerate", "frames", "response", "notes"]
-list2 = ["firstname1", "lastname1", "email1", "filename1", "filepath1", "filetype1", "date1", "mouse1", "bath1", "injection1", "length1", "time1", "framerate1", "frames1", "response1", "notes1"]
+master_query = []
+query = {}
 
 @app.route("/")
 def homepage():
@@ -54,8 +56,15 @@ def input():
         response = request.form.get("response")
         notes = request.form.get("notes")
 
+        time = length.split('.')
+        hours = int(time[0])
+        minutes = int(time[1])
+        seconds = int(time[2])
+        tot_len = hours * 3600 + minutes * 60 + seconds
+
+
         if framerate == None and frames != None and length != None:
-            framerate = round(frames / float(length))
+            framerate = round(frames / tot_len)
         if frames == None and framerate != None and length != None:
             frames = round(framerate * float(length))
         if length == None and frames != None and framerate != None:
@@ -63,17 +72,21 @@ def input():
         if filetype == "OTHER":
             filetype == ifother
 
+        ttype = type(time)
+        ftype = type(frames)
+
         db.execute("INSERT INTO experiments (firstname, lastname, email, filename, filepath, filetype, ifother, date, mouse, bath, injection, length, time, framerate, frames, response, notes) VALUES (:fn, :ln, :em, :fin, :fip, :fit, :io, :da, :mo, :ba, :inj, :le, :ti, :frr, :fr, :re, :no)",
                     fn=firstname, ln=lastname, em=email, fin=filename, fip=filepath, fit=filetype, io=ifother, da=date, mo=mouse, ba=bath, inj=injection, le=length, ti=time, frr=framerate, fr=frames, re=response, no=notes)
 
-        return redirect("/")
+        return render_template("test.html", time = time, ttype = ttype, ftype = ftype)
+        #return redirect("/")
 
-query = {}
 @app.route("/request", methods=["GET", "POST"])
 def ask():
     if request.method == "GET":
         return render_template("request.html")
     else:
+        query.clear()
         values = {}
         for i in range(len(list)):
             val = request.form.get(list[i])
@@ -85,6 +98,7 @@ def ask():
 
 @app.route("/request2", methods=["GET", "POST"])
 def ask2():
+    list2 = ["firstname1", "lastname1", "email1", "filename1", "filepath1", "filetype1", "date1", "mouse1", "bath1", "injection1", "length1", "time1", "framerate1", "frames1", "response1", "notes1"]
     if request.method == "GET":
         return render_template("request2.html")
     else:
@@ -119,8 +133,26 @@ def ask2():
             select_string = "*"
         query_string = "SELECT " + select_string + " FROM experiments WHERE " + cond_string
         rows = db.execute(query_string)
-        query.clear()
-        #return render_template("test.html", rows = rows)
+
+        master_list = []
+        list = []
+        for r in rows[0]:
+            list.append(r)
+        master_list.append(list)
+        for row in rows:
+            list2 = []
+            for r in row:
+                list2.append(row[r])
+            master_list.append(list2)
+        with open('downloadables/output.csv','w') as result_file:
+            wr = csv.writer(result_file, dialect='excel')
+            wr.writerow(master_list)
         return render_template("data.html", rows = rows)
 
 
+@app.route("/data", methods=["GET", "POST"])
+def data():
+    if request.method == "GET":
+        return render_template("data.html")
+    else:
+        return redirect("/")

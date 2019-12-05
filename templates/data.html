@@ -10,7 +10,7 @@
         <title class = title>Data</title>
     </head>
     <body class="p-3 mb-2 bg-info text-white">
-        <p> {{ titles }} {{ output }}</p>
+        <h1 class=" header text-info" >Data Table</h1>
         <table class="table table-striped">
             <tr>
                 {% for r in rows[0] %}
@@ -24,5 +24,11 @@
                 {% endfor %}
             </tr>
             {% endfor %}
+        </table>
+        <p>Click <a color: yellow href="/" style="color:yellow">HERE</a> to return to homepage.</p>
+        <a href="downloadables/output.csv" download>Download CSV</a>
+        <!--<form action="/data" method="post">
+            <button name="submit_test", type="submit" class="btn btn-success" id="submit_test">Get CSV</button>
+        </form>-->
     </body>
 <html/>
